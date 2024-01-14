@@ -1,10 +1,10 @@
 class Weathers {
   String? cityname;
-  double? temp;
-  int? humidity;
-  double? wind;
-  int? rain;
-  double? feel;
+  num? temp;
+  num? humidity;
+  num? wind;
+  num? rain;
+  num? feel;
 
   Weathers({
     this.feel,

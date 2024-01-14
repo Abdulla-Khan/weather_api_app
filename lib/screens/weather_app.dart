@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print, import_of_legacy_library_into_null_safe
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weather_app/widgets/single_widgets.dart';
@@ -30,24 +32,40 @@ class WeatherApp extends State<Weather> {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return SimpleDialog(
-                    children: [
-                      TextField(
-                        onChanged: (value) {
-                          location = value;
-                        },
-                      ),
-                      ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              w.getCurrent(location);
-                            });
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) => Weather()));
-                          },
-                          child: Text('child'))
-                    ],
-                  );
+                  return Dialog(
+                      backgroundColor: Colors.transparent,
+                      insetPadding: const EdgeInsets.all(10),
+                      child: Container(
+                        width: double.infinity,
+                        height: 200,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.white),
+                        padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
+                        child: Column(
+                          children: [
+                            TextField(
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                              ),
+                              onChanged: (value) {
+                                location = value;
+                              },
+                            ),
+                            ElevatedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    w.getCurrent(location);
+                                  });
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => const Weather()));
+                                },
+                                child: const Text('Submit'))
+                          ],
+                        ),
+                      ));
                 });
           },
           icon: const Icon(
